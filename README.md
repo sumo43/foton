@@ -2,6 +2,10 @@
 
 A LangChain-style Python library for building image generation and editing pipelines.
 
+
+Supports test time scaling using iterative refinement 
+Only supports nano banana
+
 ## Features
 
 - **Graph-based Pipeline**: Build complex image processing workflows using a graph structure
@@ -25,22 +29,16 @@ from foton import Image, Graph, nodes as N
 # Create a processing pipeline
 g = Graph() \
   .add("load", N.Load(path="input.png")) \
-  .add("segment", N.SAM2(prompt="crane")) \
-  .add("inpaint", N.DiffusionInpaint(
-        model="sdxl-refiner",
-        prompt="complete realistic sky and buildings, no crane",
-        negative="blurry, artifacts",
-        steps=30, cfg=5.5, seed=42)) \
-  .add("grade", N.ColorGrade(lut="Kodak2393.cube", intensity=0.6)) \
-  .add("upscale", N.RealESRGAN(scale=2)) \
+  .add("edit", N.Edit(prompt="make him an astronaut")) \
+  .add("refine", N.IterativeRefinement(
+        "make the image more realistic",
+        steps=30)) 
   .add("export", N.Export(path="output.png", embed_recipe=True))
 
 # Wire nodes together
-g.wire("load.image -> segment.image")
-g.wire("load.image, segment.mask -> inpaint")
-g.wire("inpaint.image -> grade.image")
-g.wire("grade.image -> upscale.image")
-g.wire("upscale.image -> export.image")
+g.wire("load.image -> edit.image")
+g.wire("edit.image -> refine.image")
+g.wire("refine.image -> export.image")
 
 # Execute the pipeline
 result = g.run()
