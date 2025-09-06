@@ -1,0 +1,17 @@
+Pillow>=9.0.0
+numpy>=1.21.0
+typing-extensions>=4.0.0
+
+[ai]
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.20.0
+diffusers>=0.20.0
+opencv-python>=4.7.0
+
+[dev]
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+isort>=5.10.0
+mypy>=1.0.0
