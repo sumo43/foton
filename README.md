@@ -1,4 +1,4 @@
-# EditGraph
+# Foton
 
 A LangChain-style Python library for building image generation and editing pipelines.
 
@@ -15,18 +15,12 @@ A LangChain-style Python library for building image generation and editing pipel
 ```bash
 # Basic installation
 pip install -e .
-
-# With AI dependencies
-pip install -e ".[ai]"
-
-# With development dependencies  
-pip install -e ".[dev]"
 ```
 
 ## Quick Start
 
 ```python
-from editgraph import Image, Graph, nodes as N
+from foton import Image, Graph, nodes as N
 
 # Create a processing pipeline
 g = Graph() \
@@ -59,52 +53,5 @@ result = g.run()
 - **Export**: Save images with optional recipe embedding
 
 ### AI-Powered Processing
-- **SAM2**: Segment Anything Model 2 for segmentation
-- **DiffusionInpaint**: Diffusion-based inpainting
-- **RealESRGAN**: Super-resolution upscaling
+- **Edit**: Edit stuff with nano banana
 
-### Image Processing
-- **ColorGrade**: Color grading with LUT support
-
-## Core Concepts
-
-### Graph
-The main pipeline container that manages nodes and their connections.
-
-### Nodes
-Individual processing units that take inputs and produce outputs. Each node can have multiple inputs and outputs.
-
-### Wiring
-Connections between nodes that define data flow. Use the format `source.output -> target.input`.
-
-### Image
-Wrapper class for image data that supports PIL Images, numpy arrays, and file paths.
-
-## Example
-
-See `example.py` for a complete working example:
-
-```bash
-python example.py
-```
-
-## Development
-
-```bash
-# Install in development mode
-pip install -e ".[dev]"
-
-# Run tests
-pytest
-
-# Format code
-black .
-isort .
-
-# Type checking
-mypy editgraph
-```
-
-## License
-
-MIT License - see LICENSE file for details.
