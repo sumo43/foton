@@ -1,5 +1,7 @@
 # Foton
 
+# i made this at a hackathon with my friend for fun, it probably sucks. do not use this software
+
 A LangChain-style Python library for building image generation and editing pipelines.
 
 
